@@ -1,13 +1,13 @@
 <h1 align="center">Point Of Sale</h1>
 
 <p align="center">
-<img src="/README_resource/ER.jpg" alt="ER Diagram">
+<img src="public\README_resource\ER.jpg" alt="ER Diagram">
 </p>
 
 
 ## **Key Entities and Their Relationships:**
 
-- **Products:**Central to the system, products have attributes like name, SKU, unit price, and product image. They are linked to Categories (many-to-one) and Brands (many-to-one).
+- **Products:** Central to the system, products have attributes like name, SKU, unit price, and product image. They are linked to Categories (many-to-one) and Brands (many-to-one).
 - **Categories:** Organize products and have a category name and description.
 - **Brands:** Represent product brands with brand name and description.
 - **Sales:** Records customer purchases, including sales date, invoice no, sub total, discount, and net total. A sale consists of multiple Sale_Items.
@@ -68,7 +68,7 @@
 <p>php artisan serve</p>
 
 #### Project structure
-
+<p>
 Directory structure:
 ├── .editorconfig
 ├── .env.example
@@ -223,3 +223,5 @@ Directory structure:
 │   └── Unit
 │       └── ExampleTest.php
 └── vite.config.js
+
+</p>
