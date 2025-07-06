@@ -1,61 +1,225 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">Point Of Sale</h1>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="/README_resource/ER.jpg" alt="ER Diagram">
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## **Key Entities and Their Relationships:**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Products:**Central to the system, products have attributes like name, SKU, unit price, and product image. They are linked to Categories (many-to-one) and Brands (many-to-one).
+- **Categories:** Organize products and have a category name and description.
+- **Brands:** Represent product brands with brand name and description.
+- **Sales:** Records customer purchases, including sales date, invoice no, sub total, discount, and net total. A sale consists of multiple Sale_Items.
+- **Customers:** Entities who make purchases, with attributes like customer name, email, phone no, and address. Customers "sell to" Sales
+- **Sale_Items:**  Details of individual items within a sale, including quantity and discount amount. Each Sale_Item links to a specific Product.
+- **Purchase:** Records product acquisitions from suppliers, including purchase date. A purchase consists of multiple Purchase_Items
+- **Suppliers:** Entities from whom products are purchased, with attributes like supplier name, email, phone no, and address. Suppliers "has" Purchase records.
+- **Purchase_Items:** Details of individual items within a purchase, including cost price, quantity, maximum retail price, and expiry date. Each Purchase_Item links to a specific Product.
+- **Inventory_Tracker:** Tracks changes in product inventory, recording created at timestamp, change type, quantity change, and balance after. It links to Products, Purchase items, and Sale items to reflect inventory movements from purchases and sales.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Overall System Flow:**
+- **Product Catalog:** Organizing products by categories and brands.
+- **Sales Management:** Handling customer orders, detailing items sold, and tracking sales totals and discounts.
+- **Purchase Management:** Recording product acquisitions from suppliers and tracking purchase details.
+- **Inventory Management:** Monitoring product stock levels and changes due to sales and purchases.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **Requeired**
+- **[Composer]()**
+- **[Xampp server]()**
+- **[code editor]()**
+- **[node]()**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Clone project
+<p>git clone repo link</p> 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### install composer command
+<p>composer install</p>
 
-## Laravel Sponsors
+#### install npm
+<p>npm install</p> 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### copy .env.example and config
+##### **before**
+<p>DB_CONNECTION=sqlite</p> 
+<p># DB_HOST=127.0.0.1</p> 
+<p># DB_PORT=3306</p> 
+<p># DB_DATABASE=laravel</p> 
+<p># DB_USERNAME=root</p> 
+<p># DB_PASSWORD=</p>
 
-### Premium Partners
+##### **after**
+<p>DB_CONNECTION=mysql</p> 
+<p># DB_HOST=127.0.0.1</p> 
+<p># DB_PORT=3306</p> 
+<p># DB_DATABASE=your_data_base_name_here</p> 
+<p># DB_USERNAME=root</p> 
+<p># DB_PASSWORD=</p> 
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+#### set app key
+<p>php artisan key:generate</p> 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### migrate the database
+<p>php artisan migrate</p> 
 
-## Code of Conduct
+#### run the project
+<p>php artisan serve</p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Project structure
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Directory structure:
+├── .editorconfig
+├── .env.example
+├── README.md
+├── app
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Auth
+│   │   │   │   ├── AuthenticatedSessionController.php
+│   │   │   │   ├── ConfirmablePasswordController.php
+│   │   │   │   ├── EmailVerificationNotificationController.php
+│   │   │   │   ├── EmailVerificationPromptController.php
+│   │   │   │   ├── NewPasswordController.php
+│   │   │   │   ├── PasswordController.php
+│   │   │   │   ├── PasswordResetLinkController.php
+│   │   │   │   ├── RegisteredUserController.php
+│   │   │   │   └── VerifyEmailController.php
+│   │   │   ├── BrandController.php
+│   │   │   ├── CategoryController.php
+│   │   │   ├── Controller.php
+│   │   │   ├── CustomerController.php
+│   │   │   ├── InventoryTrackerController.php
+│   │   │   ├── ProductController.php
+│   │   │   ├── ProfileController.php
+│   │   │   ├── PurchaseController.php
+│   │   │   ├── PurchaseItemController.php
+│   │   │   ├── SaleController.php
+│   │   │   ├── SaleItemController.php
+│   │   │   └── SupplierController.php
+│   │   └── Requests
+│   │       ├── Auth
+│   │       │   └── LoginRequest.php
+│   │       └── ProfileUpdateRequest.php
+│   ├── Models
+│   │   ├── Brand.php
+│   │   ├── Category.php
+│   │   ├── Customer.php
+│   │   ├── InventoryTracker.php
+│   │   ├── Product.php
+│   │   ├── Purchase.php
+│   │   ├── PurchaseItem.php
+│   │   ├── Sale.php
+│   │   ├── SaleItem.php
+│   │   ├── Supplier.php
+│   │   └── User.php
+│   ├── Providers
+│   │   └── AppServiceProvider.php
+│   └── View
+│       └── Components
+│           ├── AppLayout.php
+│           └── GuestLayout.php
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   └── providers.php
+├── composer.json
+├── composer.lock
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── services.php
+│   └── session.php
+├── database
+│   ├── factories
+│   │   └── UserFactory.php
+│   ├── migrations
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 2025_07_06_213909_create_brands_table.php
+│   │   ├── 2025_07_06_213935_create_categories_table.php
+│   │   ├── 2025_07_06_214000_create_customers_table.php
+│   │   ├── 2025_07_06_214026_create_inventory_trackers_table.php
+│   │   ├── 2025_07_06_214048_create_products_table.php
+│   │   ├── 2025_07_06_214114_create_purchases_table.php
+│   │   ├── 2025_07_06_214136_create_purchase_items_table.php
+│   │   ├── 2025_07_06_214156_create_sales_table.php
+│   │   ├── 2025_07_06_214214_create_sale_items_table.php
+│   │   └── 2025_07_06_214229_create_suppliers_table.php
+│   └── seeders
+│       └── DatabaseSeeder.php
+├── package.json
+├── phpunit.xml
+├── postcss.config.js
+├── public
+│   ├── .htaccess
+│   ├── index.php
+│   └── robots.txt
+├── resources
+│   ├── css
+│   │   └── app.css
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views
+│       ├── auth
+│       │   ├── confirm-password.blade.php
+│       │   ├── forgot-password.blade.php
+│       │   ├── login.blade.php
+│       │   ├── register.blade.php
+│       │   ├── reset-password.blade.php
+│       │   └── verify-email.blade.php
+│       ├── components
+│       │   ├── application-logo.blade.php
+│       │   ├── auth-session-status.blade.php
+│       │   ├── danger-button.blade.php
+│       │   ├── dropdown-link.blade.php
+│       │   ├── dropdown.blade.php
+│       │   ├── input-error.blade.php
+│       │   ├── input-label.blade.php
+│       │   ├── modal.blade.php
+│       │   ├── nav-link.blade.php
+│       │   ├── primary-button.blade.php
+│       │   ├── responsive-nav-link.blade.php
+│       │   ├── secondary-button.blade.php
+│       │   └── text-input.blade.php
+│       ├── dashboard.blade.php
+│       ├── layouts
+│       │   ├── app.blade.php
+│       │   ├── guest.blade.php
+│       │   └── navigation.blade.php
+│       ├── profile
+│       │   ├── edit.blade.php
+│       │   └── partials
+│       │       ├── delete-user-form.blade.php
+│       │       ├── update-password-form.blade.php
+│       │       └── update-profile-information-form.blade.php
+│       └── welcome.blade.php
+├── routes
+│   ├── auth.php
+│   ├── console.php
+│   └── web.php
+├── tailwind.config.js
+├── tests
+│   ├── Feature
+│   │   ├── Auth
+│   │   │   ├── AuthenticationTest.php
+│   │   │   ├── EmailVerificationTest.php
+│   │   │   ├── PasswordConfirmationTest.php
+│   │   │   ├── PasswordResetTest.php
+│   │   │   ├── PasswordUpdateTest.php
+│   │   │   └── RegistrationTest.php
+│   │   ├── ExampleTest.php
+│   │   └── ProfileTest.php
+│   ├── TestCase.php
+│   └── Unit
+│       └── ExampleTest.php
+└── vite.config.js
