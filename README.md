@@ -34,10 +34,10 @@
 #### Clone project
 <p>git clone repo link</p> 
 
-#### install composer command
+#### install composer require files
 <p>composer install</p>
 
-#### install npm
+#### install npm require files
 <p>npm install</p> 
 
 #### copy .env.example and config
